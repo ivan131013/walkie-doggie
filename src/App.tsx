@@ -30,6 +30,10 @@ const router = createBrowserRouter([
     element: <OwnerHome />,
   },
   { path: "/checkout", element: <Checkout /> },
+  {
+    path: "/walker-sign-up",
+    element: <OwnerRegister />,
+  },
 ]);
 
 function App() {

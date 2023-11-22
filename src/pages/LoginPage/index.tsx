@@ -77,6 +77,9 @@ const LoginPage: FunctionComponent<LoginPageProps> = () => {
                 mt={"1.5rem"}
                 py={"1.5rem"}
                 fontWeight={"500"}
+                onClick={() => {
+                  hanldeLoginClick();
+                }}
               >
                 Login
               </Button>
@@ -99,9 +102,6 @@ const LoginPage: FunctionComponent<LoginPageProps> = () => {
             color={"#276EF1"}
             position={"absolute"}
             bottom={"2rem"}
-            onClick={() => {
-              hanldeLoginClick();
-            }}
           >
             Dog walker sign up
           </Button>
