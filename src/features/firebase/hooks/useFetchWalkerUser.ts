@@ -19,12 +19,14 @@ export const useFetchWalkerUser = () => {
       if (user?.uid) {
         const data = await getDocs(
           query(
-            collection(db, "walker_user"),
+            collection(db, "walker_users"),
             where("uid", "==", user.uid),
             limit(1)
           )
         );
-        setUserData(data.docs.at(0)?.data());
+        if (data.docs.at(0)?.data()) {
+          setUserData({ ...data.docs.at(0)?.data(), id: data.docs.at(0)?.id });
+        }
       }
     };
 

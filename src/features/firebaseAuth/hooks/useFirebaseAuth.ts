@@ -23,7 +23,7 @@ export const useFirebaseAuth = () => {
         setUser(undefined);
       }
     });
-  }, []);
+  }, [auth]);
 
   const signIn = (email: string, password: string, callBack?: () => void) => {
     return signInWithEmailAndPassword(auth, email, password);
