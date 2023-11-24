@@ -15,6 +15,7 @@ import WalkerRegister from "./pages/WalkerRegister";
 import WalkerHome from "./pages/WalkerHome";
 import OnwerWalkPage from "./pages/OwnerWalkPage";
 import { APIProvider } from "@vis.gl/react-google-maps";
+import WalkerWalkpage from "./pages/WalkerWalkPage";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/owner-walk-page/:id",
     element: <OnwerWalkPage />,
+  },
+  {
+    path: "/walker-walk-page/:id",
+    element: <WalkerWalkpage />,
   },
 ]);
 

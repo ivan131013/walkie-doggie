@@ -26,7 +26,10 @@ export const useFetchWalkerProfileData = () => {
           )
         );
 
-        setUserData(docRef.docs.at(0)?.data());
+        setUserData({
+          ...docRef.docs.at(0)?.data(),
+          id: docRef.docs.at(0)?.id,
+        });
       }
     };
 

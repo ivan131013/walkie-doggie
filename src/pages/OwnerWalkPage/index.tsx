@@ -1,4 +1,4 @@
-import { Box, Button, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, useDisclosure } from "@chakra-ui/react";
 import { FunctionComponent, useEffect, useState } from "react";
 import onwer_marker from "../../assets/images/marker_owner_thumb.png";
 import walker_marker from "../../assets/images/marker_walker_thumb.png";
@@ -15,6 +15,8 @@ import DefaultLayout from "../../ui/layouts/DefaultLayout";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetWalkById } from "../../features/walkPageOwner/hooks/useGetWalkById";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { useOwnerWalkHooks } from "../../features/walks/hooks/useOwnerWalkHook";
+import WalkerModal from "../../features/walkPageOwner/components/WalkerModal";
 
 interface OnwerWalkPageProps {}
 
@@ -23,6 +25,10 @@ const OnwerWalkPage: FunctionComponent<OnwerWalkPageProps> = () => {
   const navigate = useNavigate();
 
   const { walkData } = useGetWalkById(id);
+
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
+  const { confirmPickupForAWalk, finishWalk } = useOwnerWalkHooks();
 
   const [currentLocation, setCurrentLocation] = useState<any>({
     lat: 0,
@@ -63,11 +69,49 @@ const OnwerWalkPage: FunctionComponent<OnwerWalkPageProps> = () => {
           Back
         </Button>
         <CurrentStepComponent />
+        <Flex mt={"1rem"} gap={"1rem"}>
+          <Button
+            bg={"black"}
+            color={"white"}
+            fontWeight={"400"}
+            onClick={() => {
+              onOpen();
+            }}
+          >
+            Walker info
+          </Button>
+          {walkData?.status === "awaiting_pickup" && (
+            <Button
+              bg={"white"}
+              color={"balck"}
+              border={"1px solid black"}
+              fontWeight={"400"}
+              onClick={() => {
+                confirmPickupForAWalk(id ?? "");
+              }}
+            >
+              Confirm pickup
+            </Button>
+          )}
+
+          {walkData?.status === "returning" && (
+            <Button
+              bg={"black"}
+              color={"white"}
+              fontWeight={"400"}
+              onClick={() => {
+                finishWalk(id ?? "");
+              }}
+            >
+              Finish order
+            </Button>
+          )}
+        </Flex>
       </Box>
 
       <Box h={"30rem"}>
         <Map
-          zoom={10}
+          zoom={12}
           center={{ lat: 49.85992, lng: 24.014483 }}
           mapId={"owner-tracker-map"}
         >
@@ -82,6 +126,11 @@ const OnwerWalkPage: FunctionComponent<OnwerWalkPageProps> = () => {
           )}
         </Map>
       </Box>
+      <WalkerModal
+        walkerId={walkData?.acceptedBy ?? ""}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </DefaultLayout>
   );
 };

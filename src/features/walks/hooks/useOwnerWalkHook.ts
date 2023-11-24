@@ -1,8 +1,10 @@
 import {
   addDoc,
   collection,
+  doc,
   onSnapshot,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -39,6 +41,7 @@ export const useOwnerWalkHooks = () => {
     addDoc(collection(db, "walks"), {
       ownerId: userData.id,
       location: location,
+      ownerLocation: location,
       status: "new",
       acceptedBy: "",
       createdAt: new Date(),
@@ -48,9 +51,23 @@ export const useOwnerWalkHooks = () => {
     });
   };
 
+  const confirmPickupForAWalk = (id: string) => {
+    return updateDoc(doc(db, "walks", id ?? ""), {
+      status: "ongoing",
+    });
+  };
+
+  const finishWalk = (id: string) => {
+    return updateDoc(doc(db, "walks", id ?? ""), {
+      status: "finished",
+    });
+  };
+
   return {
     bookAWalk,
+    confirmPickupForAWalk,
     ownerWalks,
+    finishWalk,
     ownerPendingWalks:
       ownerWalks?.filter((e) => e.status.toLowerCase() !== "ended") ?? [],
   };

@@ -51,7 +51,7 @@ const OnwerWalkItem: FunctionComponent<OnwerWalkItemProps> = ({ walkData }) => {
         )}
       </Text>
 
-      <Flex>
+      <Flex alignItems={'center'}>
         <Text fontSize={".875rem"}>{statusMap[walkData?.status]}</Text>
         <Image h={"2rem"} src={statusImages[walkData?.status]} />
       </Flex>

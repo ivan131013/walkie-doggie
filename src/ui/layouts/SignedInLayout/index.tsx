@@ -1,6 +1,8 @@
-import { Avatar, Box, Flex } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Heading, useDisclosure } from "@chakra-ui/react";
 import { FunctionComponent } from "react";
 import pes_patron from "../../../assets/images/pes_patron.jpg";
+import { useFetchOwnerUser } from "../../../features/firebase/hooks/useFetchOwnerUser";
+import MainProfileOwner from "../../../features/ownerHome/components/MainProfileOwner";
 
 interface DefaultLayoutProps {
   children: React.ReactElement | React.ReactElement[];
@@ -9,15 +11,15 @@ interface DefaultLayoutProps {
 const SignedInLayout: FunctionComponent<DefaultLayoutProps> = ({
   children,
 }) => {
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const { userData } = useFetchOwnerUser();
   return (
     <Box minH={"100vh"} pt={"2rem"} px={"1.5rem !important"} maxW={"100vw"}>
-      <Flex w={"100%"} justifyContent={"flex-end"} mb={"1rem"}>
-        <Avatar
-          size="md"
-          name="Ryan Florence"
-          src={pes_patron}
-          boxShadow={"0px 0px 8px 8px rgba(0, 0, 0, 0.2)"}
-        />
+      <Flex w={"100%"} justifyContent={"space-between"} mb={"1rem"}>
+        <Heading fontFamily={"Righteous"} fontSize={"2rem"}>
+          Hello, {userData?.name} & {userData?.dogName}
+        </Heading>
+        <MainProfileOwner />
       </Flex>
       {children}
     </Box>

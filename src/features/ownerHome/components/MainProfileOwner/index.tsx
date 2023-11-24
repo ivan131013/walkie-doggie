@@ -15,13 +15,13 @@ import {
 import { FunctionComponent, useEffect } from "react";
 import { MdOutlineLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useFetchOwnerUser } from "../../../firebase/hooks/useFetchOwnerUser";
 import { useFirebaseAuth } from "../../../firebaseAuth/hooks/useFirebaseAuth";
-import { useFetchWalkerProfileData } from "../../hooks/useFetchWalkerProfileData";
 
 interface MainProfileProps {}
 
-const MainProfile: FunctionComponent<MainProfileProps> = () => {
-  const { userData } = useFetchWalkerProfileData();
+const MainProfileOwner: FunctionComponent<MainProfileProps> = () => {
+  const { userData } = useFetchOwnerUser();
 
   const { user, signOut } = useFirebaseAuth();
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ const MainProfile: FunctionComponent<MainProfileProps> = () => {
 
           <DrawerBody>
             <Heading fontSize={"2rem"} fontWeight={"400"}>
-              {userData?.firstName} {userData?.lastName}
+              {userData?.name} & {userData?.dogName}
             </Heading>
           </DrawerBody>
 
@@ -71,4 +71,4 @@ const MainProfile: FunctionComponent<MainProfileProps> = () => {
   );
 };
 
-export default MainProfile;
+export default MainProfileOwner;
