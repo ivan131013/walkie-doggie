@@ -102,6 +102,9 @@ const LoginPage: FunctionComponent<LoginPageProps> = () => {
             color={"#276EF1"}
             position={"absolute"}
             bottom={"2rem"}
+            onClick={() => {
+              navigate("/walker-sign-up");
+            }}
           >
             Dog walker sign up
           </Button>

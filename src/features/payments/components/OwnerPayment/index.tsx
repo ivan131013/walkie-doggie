@@ -8,6 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import { Button } from "@chakra-ui/react";
 
 interface OwnerPaymentProps {}
 
@@ -48,7 +49,17 @@ const OwnerPayment: FunctionComponent<OwnerPaymentProps> = () => {
     <>
       <form onSubmit={handleSubmit}>
         <PaymentElement />
-        <button>Submit</button>
+        <Button
+          type={"submit"}
+          mt={"2rem"}
+          w={"100%"}
+          bg={"black"}
+          color={"white"}
+          fontSize={"1.1rem"}
+          fontWeight={"400"}
+        >
+          Pay 200 UAH
+        </Button>
       </form>
     </>
   );

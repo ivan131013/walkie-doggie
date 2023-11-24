@@ -11,6 +11,10 @@ import OwnerRegister from "./pages/OwnerRegister";
 import { app } from "./services/firebase/firebaseConfig";
 import OwnerHome from "./pages/OwnerHome";
 import Checkout from "./pages/Checkout";
+import WalkerRegister from "./pages/WalkerRegister";
+import WalkerHome from "./pages/WalkerHome";
+import OnwerWalkPage from "./pages/OwnerWalkPage";
+import { APIProvider } from "@vis.gl/react-google-maps";
 
 const router = createBrowserRouter([
   {
@@ -32,16 +36,26 @@ const router = createBrowserRouter([
   { path: "/checkout", element: <Checkout /> },
   {
     path: "/walker-sign-up",
-    element: <OwnerRegister />,
+    element: <WalkerRegister />,
+  },
+  {
+    path: "/walker-home",
+    element: <WalkerHome />,
+  },
+  {
+    path: "/owner-walk-page/:id",
+    element: <OnwerWalkPage />,
   },
 ]);
 
 function App() {
   return (
-    <ChakraBaseProvider theme={theme}>
-      <RouterProvider router={router} />
-      <ToastContainer />
-    </ChakraBaseProvider>
+    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY ?? ""}>
+      <ChakraBaseProvider theme={theme}>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </ChakraBaseProvider>
+    </APIProvider>
   );
 }
 

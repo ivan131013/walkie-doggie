@@ -32,11 +32,9 @@ const AroundMap: FunctionComponent<AroundMapProps> = () => {
 
   return (
     <Box w={"100%"} h={"20rem"}>
-      <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY ?? ""}>
-        <Map center={defaultProps.center} zoom={10}>
-          <Marker position={defaultCoordinates} />
-        </Map>
-      </APIProvider>
+      <Map center={defaultProps.center} zoom={10}>
+        <Marker position={defaultCoordinates} />
+      </Map>
     </Box>
   );
 };

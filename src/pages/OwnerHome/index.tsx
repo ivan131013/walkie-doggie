@@ -4,6 +4,7 @@ import SignedInLayout from "../../ui/layouts/SignedInLayout";
 import dev_food from "../../assets/images/dev_food.png";
 import HomepageBookSection from "../../features/ownerHome/components/HomepageBookSection";
 import AroundMap from "../../features/ownerHome/components/AroundMap";
+import CurrentOwnerWalks from "../../features/walks/components/CurrentOwnerWalks";
 
 interface OwnerHomeProps {}
 
@@ -33,6 +34,8 @@ const OwnerHome: FunctionComponent<OwnerHomeProps> = () => {
         </Flex>
 
         <HomepageBookSection />
+
+        <CurrentOwnerWalks />
 
         <AroundMap />
       </VStack>

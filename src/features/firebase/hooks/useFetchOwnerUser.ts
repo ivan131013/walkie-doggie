@@ -24,7 +24,7 @@ export const useFetchOwnerUser = () => {
             limit(1)
           )
         );
-        setUserData(data.docs.at(0)?.data());
+        setUserData({ ...data.docs.at(0)?.data(), id: data.docs.at(0)?.id });
       }
     };
 
