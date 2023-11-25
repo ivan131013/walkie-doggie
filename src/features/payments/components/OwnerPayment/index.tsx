@@ -31,7 +31,7 @@ const OwnerPayment: FunctionComponent<OwnerPaymentProps> = () => {
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: "walkie-doggie-135ce.web.app/owner-home",
+        return_url: "https://walkie-doggie-135ce.web.app/owner-home",
       },
     });
 

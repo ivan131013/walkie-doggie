@@ -21,45 +21,49 @@ const CurrentWalk: FunctionComponent<CurrentWalkProps> = () => {
 
   const { userData } = useFetchOwnerUserById(walkData?.ownerId);
   return (
-    <Box
-      bg={"rgba(0, 0, 2, 0.05)"}
-      p={"2rem"}
-      mt={"2rem"}
-      borderRadius={"1rem"}
-    >
-      <Heading fontSize={"2rem"} textAlign={"center"} mb={"1rem"}>
-        Ongoing order:
-      </Heading>
-
-      <Box bg={"white"} p={"1rem"} borderRadius={"1rem"}>
-        <Text mb={"1rem"}>
-          {userData?.name} has requested a {walkData?.duration} minutes long
-          walk
-        </Text>
-
-        <Heading
-          color={"rgb(50, 128, 255)"}
-          fontSize={"1.75rem"}
-          fontWeight={300}
-          w={"100%"}
-          textAlign={"center"}
+    <>
+      {walkData && (
+        <Box
+          bg={"rgba(0, 0, 2, 0.05)"}
+          p={"2rem"}
+          mt={"2rem"}
+          borderRadius={"1rem"}
         >
-          {statusMap[walkData?.status]}
-        </Heading>
-        <Flex justifyContent={"center"}>
-          <Button
-            variant={"ghost"}
-            fontWeight={"300"}
-            fontSize={"0.875rem"}
-            onClick={() => {
-              navigate("/walker-walk-page/" + walkData?.id);
-            }}
-          >
-            See details
-          </Button>
-        </Flex>
-      </Box>
-    </Box>
+          <Heading fontSize={"2rem"} textAlign={"center"} mb={"1rem"}>
+            Ongoing order:
+          </Heading>
+
+          <Box bg={"white"} p={"1rem"} borderRadius={"1rem"}>
+            <Text mb={"1rem"}>
+              {userData?.name} has requested a {walkData?.duration} minutes long
+              walk
+            </Text>
+
+            <Heading
+              color={"rgb(50, 128, 255)"}
+              fontSize={"1.75rem"}
+              fontWeight={300}
+              w={"100%"}
+              textAlign={"center"}
+            >
+              {statusMap[walkData?.status]}
+            </Heading>
+            <Flex justifyContent={"center"}>
+              <Button
+                variant={"ghost"}
+                fontWeight={"300"}
+                fontSize={"0.875rem"}
+                onClick={() => {
+                  navigate("/walker-walk-page/" + walkData?.id);
+                }}
+              >
+                See details
+              </Button>
+            </Flex>
+          </Box>
+        </Box>
+      )}
+    </>
   );
 };
 
