@@ -24,7 +24,7 @@ import { useGetWalkById } from "../../../walkPageOwner/hooks/useGetWalkById";
     { title: "In progress", description: "WALK THE DOG" },
     {
       title: "Returning",
-      description: "Kebabise the bitch",
+      description: "Return the dog",
     },
   ];
   
